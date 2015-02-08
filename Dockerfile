@@ -19,8 +19,8 @@ RUN apt-get install unzip
 RUN \
  cd /\
  wget https://github.com/winder/Universal-G-Code-Sender/releases/download/v1.0.7/UniversalGcodeSender-v1.0.7.zip && \
+ ls -latr && \
  unzip UniversalGcodeSender-v1.0.7.zip  
-
 
 
 CMD ["/bin/bash", "-ex", "start.sh"]
