@@ -1,27 +1,25 @@
 
 FROM resin/rpi-raspbian:wheezy-2015-01-15
 
-RUN \
-  echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee -a /etc/apt/sources.list && \
-  echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee -a /etc/apt/sources.list && \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
-  apt-get update
 
-RUN \
-  echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  apt-get install -y oracle-java8-installer &&\
-  apt-get clean
+RUN echo 'deb http://archive.raspberrypi.org/debian/ wheezy main' >> /etc/apt/sources.list.d/raspi.list
+ADD ./raspberrypi.gpg.key /key/
+RUN apt-key add /key/raspberrypi.gpg.key
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN echo oracle-java8-jdk shared/accepted-oracle-license-v1-1 select true| /usr/bin/debconf-set-selections
+RUN apt-get -y install oracle-java8-jdk 
+RUN apt-get clean
+
 
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /etc/environment
 
 
 RUN \
- cd \
+ cd /\
  wget https://github.com/winder/Universal-G-Code-Sender/releases/download/v1.0.7/UniversalGcodeSender-v1.0.7.zip && \
  unzip UniversalGcodeSender-v1.0.7.zip  
 
 
-# Define default command.
-CMD ["start.sh"]
 
-
+CMD ["/bin/bash", "-ex", "start.sh"]
