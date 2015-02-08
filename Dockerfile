@@ -17,7 +17,7 @@ RUN echo "JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /etc/environment
 RUN apt-get install unzip
 
 RUN \
- cd /\
+ cd ~ && \
  wget https://github.com/winder/Universal-G-Code-Sender/releases/download/v1.0.7/UniversalGcodeSender-v1.0.7.zip && \
  ls -latr && \
  unzip UniversalGcodeSender-v1.0.7.zip  
