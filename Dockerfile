@@ -6,7 +6,6 @@ RUN echo 'deb http://archive.raspberrypi.org/debian/ wheezy main' >> /etc/apt/so
 ADD ./raspberrypi.gpg.key /key/
 RUN apt-key add /key/raspberrypi.gpg.key
 RUN apt-get update
-<<<<<<< HEAD
 
 RUN apt-get -y install wget
 RUN apt-get -y install unzip
@@ -18,8 +17,6 @@ RUN \
  ls -latr && \
  unzip UniversalGcodeSender-v1.0.7.zip  
 
-=======
->>>>>>> c621c674f1c719918961612d5b130c1ab7db7e9d
 #RUN apt-get -y upgrade
 RUN echo oracle-java8-jdk shared/accepted-oracle-license-v1-1 select true| /usr/bin/debconf-set-selections
 RUN apt-get -y install oracle-java8-jdk 
