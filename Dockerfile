@@ -14,8 +14,8 @@ RUN apt-get clean
 
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /etc/environment
 
-RUN apt-get install wget
-RUN apt-get install unzip
+RUN apt-get -y install wget
+RUN apt-get -y install unzip
 
 RUN \
  cd ~ && \
